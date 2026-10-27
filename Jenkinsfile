@@ -10,7 +10,7 @@ pipeline {
             steps {
                 script {
                     echo "Building image for version: ${TAG}"
-                    sh "docker build -t ${IMAGE_NAME}:${TAG} ."
+                    bat "docker build -t ${IMAGE_NAME}:${TAG} ."
                 }
             }
         }
@@ -18,8 +18,8 @@ pipeline {
             steps {
                 script {
                     echo "Pushing image to DockerHub..."
-                    sh "echo \$DOCKERHUB_CREDENTIALS_PSW | docker login -u \$DOCKERHUB_CREDENTIALS_USR --password-stdin"
-                    sh "docker push ${IMAGE_NAME}:${TAG}"
+                    bat "echo %DOCKERHUB_CREDENTIALS_PSW% | docker login -u %DOCKERHUB_CREDENTIALS_USR% --password-stdin"
+                    bat "docker push ${IMAGE_NAME}:${TAG}"
                 }
             }
         }
