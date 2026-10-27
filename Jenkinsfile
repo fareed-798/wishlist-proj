@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                     echo "Pushing image to DockerHub..."
-                    bat "echo %DOCKERHUB_CREDENTIALS_PSW% | docker login -u %DOCKERHUB_CREDENTIALS_USR% --password-stdin"
+                    bat "docker login -u %DOCKERHUB_CREDENTIALS_USR% -p %DOCKERHUB_CREDENTIALS_PSW%"
                     bat "docker push ${IMAGE_NAME}:${TAG}"
                 }
             }
